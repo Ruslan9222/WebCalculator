@@ -45,6 +45,16 @@ public class OperationService {
                 Operation value3 = new Operation(num1, num2, type, v3, author);
                 operationStorage.save(value3);
                 return Optional.of(value3);
+            case "cos":
+                double v4 = Math.cos(num1);
+                Operation value4 = new Operation(num1,num2,type,v4,author);
+                operationStorage.save(value4);
+                return Optional.of(value4);
+            case "sin":
+                double v5 = Math.sin(num1);
+                Operation value5 = new Operation(num1,num2,type,v5,author);
+                operationStorage.save(value5);
+                return Optional.of(value5);
 
         }
         return Optional.empty();

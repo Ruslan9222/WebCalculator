@@ -11,7 +11,7 @@
     <title>Registration</title>
 </head>
 <body>
-<form action="/registration.jsp" method="post">
+<form action="/registration" method="post">
     <input type="text" name="name" placeholder="Name">
     <input type="text" name="username" placeholder="Username">
     <input type="password" name="password" placeholder="Password">

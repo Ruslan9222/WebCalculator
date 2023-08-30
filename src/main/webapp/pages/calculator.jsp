@@ -7,10 +7,18 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+    <title>Calculator</title>
+</head>
+<body>
+<form action="/calculator" method="post">
+<input type="text" name="num1" placeholder="Number1">
+<input type="text" name="num2" placeholder="Number2">
+<input type="text" name="type" placeholder="Type">
+<button>Submint</button>
+</form>
+<h2>${result}</h2>
+<h2>${message}</h2>
+
+</body>
 </html>

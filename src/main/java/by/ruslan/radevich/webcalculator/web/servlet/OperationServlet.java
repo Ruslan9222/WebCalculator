@@ -1,6 +1,7 @@
 package by.ruslan.radevich.webcalculator.web.servlet;
 
 import by.ruslan.radevich.webcalculator.entity.Operation;
+import by.ruslan.radevich.webcalculator.entity.User;
 import by.ruslan.radevich.webcalculator.service.OperationService;
 
 import javax.servlet.ServletException;
@@ -11,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
-@WebServlet("/calculator")
+@WebServlet(value = "/calculator", name = "OperationServlet")
 public class OperationServlet extends HttpServlet {
-    private final OperationService operationService = new OperationService();
+    private final OperationService operationService = OperationService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,7 +28,9 @@ public class OperationServlet extends HttpServlet {
         double num2 = Double.parseDouble(req.getParameter("num2"));
         String type = req.getParameter("type");
 
-        Optional<Operation> calculate = operationService.calculate(num1, num2, type);
+        User currentUser = (User) req.getSession().getAttribute("currentUser");
+
+        Optional<Operation> calculate = operationService.calculate(num1, num2, type, currentUser);
         if (calculate.isPresent()) {
             Operation operation = calculate.get();
             req.setAttribute("result", operation);

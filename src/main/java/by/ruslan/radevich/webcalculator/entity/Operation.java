@@ -5,15 +5,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class Operation {
-    private double num1;
-    private double num2;
-    private String type;
-    private double result;
-    private User author;
+import javax.sql.RowSet;
+
+//@Data
+//@NoArgsConstructor
+//@AllArgsConstructor
+public interface Operation {
+    Operation execute();
+
+    double result();
+    User author();
+
+
+
+//    private double num1;
+//    private double num2;
+//    private String type;
+//    private double result;
+//    private User author;
 
 
 }

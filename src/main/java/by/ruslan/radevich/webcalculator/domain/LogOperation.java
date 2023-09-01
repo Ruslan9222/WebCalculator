@@ -1,17 +1,16 @@
 package by.ruslan.radevich.webcalculator.domain;
 
 import by.ruslan.radevich.webcalculator.entity.Operation;
-import by.ruslan.radevich.webcalculator.entity.User;
 
 public class LogOperation implements Operation {
     private final double num;
     private final String type;
     private double result;
-    private User author;
+    private String author;
 
-    public LogOperation(double num, String type, User author) {
+    public LogOperation(double num, Type type, String author) {
         this.num = num;
-        this.type = type;
+        this.type = String.valueOf(type);
         this.author = author;
     }
 
@@ -27,8 +26,8 @@ public class LogOperation implements Operation {
     }
 
     @Override
-    public User author() {
+    public String author() {
         return author;
     }
 }
-}
+

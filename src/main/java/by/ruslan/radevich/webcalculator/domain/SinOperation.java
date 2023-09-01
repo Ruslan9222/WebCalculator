@@ -7,11 +7,11 @@ public class SinOperation implements Operation {
     private final double num;
     private final String type;
     private double result;
-    private final User author;
+    private final String author;
 
-    public SinOperation(double num, String type, User author) {
+    public SinOperation(double num, Type type, String author) {
         this.num = num;
-        this.type = type;
+        this.type = String.valueOf(type);
         this.author = author;
     }
 
@@ -27,7 +27,7 @@ public class SinOperation implements Operation {
     }
 
     @Override
-    public User author() {
+    public String author() {
         return author;
     }
 }

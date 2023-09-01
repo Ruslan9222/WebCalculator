@@ -2,6 +2,7 @@ package by.ruslan.radevich.webcalculator.web.servlet;
 
 import by.ruslan.radevich.webcalculator.entity.Operation;
 import by.ruslan.radevich.webcalculator.entity.User;
+import by.ruslan.radevich.webcalculator.factory.OperationFactory;
 import by.ruslan.radevich.webcalculator.service.OperationService;
 
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @WebServlet(value = "/calculator", name = "OperationServlet")
 public class OperationServlet extends HttpServlet {
     private final OperationService operationService = OperationService.getInstance();
+    private OperationFactory operationFactory = OperationFactory.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,19 +26,31 @@ public class OperationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        double num1 = Double.parseDouble(req.getParameter("num1"));
-        double num2 = Double.parseDouble(req.getParameter("num2"));
+        String values = req.getParameter("values");
+        String[] split = values.split(",");
         String type = req.getParameter("type");
-
-        User currentUser = (User) req.getSession().getAttribute("currentUser");
-
-        Optional<Operation> calculate = operationService.calculate(num1, num2, type, currentUser);
-        if (calculate.isPresent()) {
-            Operation operation = calculate.get();
-            req.setAttribute("result", operation);
-        } else {
-            req.setAttribute("message", "Type not found!");
-        }
-        getServletContext().getRequestDispatcher("/pages/calculator.jsp").forward(req, resp);
+        String author = req.getParameter("author");
+        Optional<Operation> operation = operationFactory.getOperation(split, Operation.Type.valueOf(type), author);
+        Operation calculate = OperationService.getInstance().calculate(operation);
+        double result = calculate.result();
     }
 }
+
+//    @Override
+//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        double num1 = Double.parseDouble(req.getParameter("num1"));
+//        double num2 = Double.parseDouble(req.getParameter("num2"));
+//        String type = req.getParameter("type");
+
+//        User currentUser = (User) operationService.getSession().getAttribute("currentUser");
+//
+//        Optional<Operation> calculate = operationService.calculate(num1, num2, type, currentUser);
+//        if (calculate.isPresent()) {
+//            Operation operation = calculate.get();
+//            req.setAttribute("result", operation);
+//        } else {
+//            req.setAttribute("message", "Type not found!");
+//        }
+//        getServletContext().getRequestDispatcher("/pages/calculator.jsp").forward(req, resp);
+//    }
+//}

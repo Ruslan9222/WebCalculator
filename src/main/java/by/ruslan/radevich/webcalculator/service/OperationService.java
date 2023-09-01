@@ -22,10 +22,10 @@ public class OperationService {
         return instance;
     }
     private final OperationStorage operationStorage = new InMemoryOperationStorage();
-    public Operation calculate (Operation operation){
-        Operation execute = operation.execute();
+    public Operation calculate (Optional<Operation> operation){
+        Operation execute = operation.get();
         operationStorage.save(execute);
-        return operation.execute();
+        return operation.get();
 
 //    public Optional<Operation> calculate(double num1, double num2, String type, User author) {
 //        switch (type) {

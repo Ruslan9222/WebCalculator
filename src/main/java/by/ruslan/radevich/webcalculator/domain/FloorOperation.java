@@ -7,11 +7,11 @@ public class FloorOperation implements Operation {
     private final double num;
     private final String type;
     private double result;
-    private User author;
+    private String author;
 
-    public FloorOperation(double num, String type, User author) {
+    public FloorOperation(double num, Type type, String author) {
         this.num = num;
-        this.type = type;
+        this.type = String.valueOf(type);
         this.author = author;
     }
 
@@ -27,7 +27,7 @@ public class FloorOperation implements Operation {
     }
 
     @Override
-    public User author() {
+    public String author() {
         return author;
     }
 }

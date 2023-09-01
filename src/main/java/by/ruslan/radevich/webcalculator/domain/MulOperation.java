@@ -7,9 +7,9 @@ public class MulOperation implements Operation {
     private final double num1;
     private final double num2;
     private double result;
-    private final User author;
+    private final String author;
 
-    public MulOperation(double num1, double num2, User author) {
+    public MulOperation(double num1, double num2, String author) {
         this.num1 = num1;
         this.num2 = num2;
         this.author = author;
@@ -27,7 +27,7 @@ public class MulOperation implements Operation {
     }
 
     @Override
-    public User author() {
+    public String author() {
         return author;
     }
 }

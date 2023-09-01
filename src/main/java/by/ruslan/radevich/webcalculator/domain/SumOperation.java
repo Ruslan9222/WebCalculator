@@ -4,14 +4,15 @@ import by.ruslan.radevich.webcalculator.entity.Operation;
 import by.ruslan.radevich.webcalculator.entity.User;
 
 public class SumOperation implements Operation {
-    private double num1;
-    private double num2;
+    private final double num1;
+    private final double num2;
     private double result;
-    private User author;
+    private final String author;
 
     public SumOperation(double num1, double num2) {
         this.num1 = num1;
         this.num2 = num2;
+        this.author = author();
     }
 
     @Override
@@ -26,7 +27,7 @@ public class SumOperation implements Operation {
     }
 
     @Override
-    public User author() {
+    public String author() {
         return author;
     }
 }

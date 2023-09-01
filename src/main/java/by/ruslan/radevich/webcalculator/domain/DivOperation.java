@@ -7,9 +7,9 @@ public class DivOperation implements Operation {
     private double num1;
     private double num2;
     private double result;
-    private User author;
+    private String author;
 
-    public DivOperation(double num1, double num2, User author) {
+    public DivOperation(double num1, double num2, String author) {
         this.num1 = num1;
         this.num2 = num2;
         this.author = author;
@@ -27,7 +27,7 @@ public class DivOperation implements Operation {
     }
 
     @Override
-    public User author() {
+    public String author() {
         return author;
     }
 }

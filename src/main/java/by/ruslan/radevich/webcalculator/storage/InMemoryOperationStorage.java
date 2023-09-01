@@ -17,7 +17,7 @@ public class InMemoryOperationStorage implements OperationStorage {
     @Override
     public List<Operation> findAllByAuthorUsername(String username) {
         return operations.stream()
-                .filter(operation -> operation.getAuthor().getUsername().equals(username))
+                .filter(operation -> Boolean.parseBoolean(operation.author()))
                 .toList();
     }
 }

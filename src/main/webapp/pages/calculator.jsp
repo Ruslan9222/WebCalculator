@@ -18,7 +18,7 @@
 <button>Submit</button>
 </form>
 <form action="${pageContext.request.contextPath}/calculator" method="post">
-    <input type="text" name="value" placeholder="values">
+    <input type="text" name="values" placeholder="values">
     <input type="text" name="type" placeholder="ABS, COS, DIV, FLOOR, LOG, MUL, SIN, SUB, SUM, TAN">
     <button>Submit</button>
 </form>

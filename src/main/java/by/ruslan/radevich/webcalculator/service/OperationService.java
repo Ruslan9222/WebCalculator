@@ -5,6 +5,7 @@ import by.ruslan.radevich.webcalculator.entity.User;
 import by.ruslan.radevich.webcalculator.storage.InMemoryOperationStorage;
 import by.ruslan.radevich.webcalculator.storage.OperationStorage;
 
+import javax.servlet.ServletContext;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,5 +72,9 @@ public class OperationService {
 
     public List<Operation> getHistory(User author) {
         return operationStorage.findAllByAuthorUsername(author.getUsername());
+    }
+
+    public ServletContext getSession() {
+        return null;
     }
 }

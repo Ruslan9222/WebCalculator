@@ -30,10 +30,11 @@ public class OperationServlet extends HttpServlet {
         String[] split = values.split(",");
         String type = req.getParameter("type");
         String author = req.getParameter("author");
-        Optional<Operation> operation = operationFactory.getOperation(split, Operation.Type.valueOf(type), author);
+        Optional<Operation> operation = operationFactory.getOperation(split, Operation.Type.valueOf(type),author);
         Operation calculate = OperationService.getInstance().calculate(operation);
         double result = calculate.result();
     }
+
 }
 
 //    @Override
@@ -42,9 +43,9 @@ public class OperationServlet extends HttpServlet {
 //        double num2 = Double.parseDouble(req.getParameter("num2"));
 //        String type = req.getParameter("type");
 
-//        User currentUser = (User) operationService.getSession().getAttribute("currentUser");
+//       User currentUser = (User) operationService.getSession().getAttribute("currentUser");
 //
-//        Optional<Operation> calculate = operationService.calculate(num1, num2, type, currentUser);
+//     Operation calculate = operationService.calculate(num1, num2, type, currentUser);
 //        if (calculate.isPresent()) {
 //            Operation operation = calculate.get();
 //            req.setAttribute("result", operation);

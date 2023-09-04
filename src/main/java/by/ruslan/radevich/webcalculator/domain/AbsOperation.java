@@ -1,18 +1,19 @@
 package by.ruslan.radevich.webcalculator.domain;
 
 import by.ruslan.radevich.webcalculator.entity.Operation;
-import by.ruslan.radevich.webcalculator.entity.User;
 
 public class AbsOperation implements Operation {
     private final double num;
     private final String type;
     private double result;
-    private final String author;
+    private  String author;
+
 
     public AbsOperation(double num, Type type, String author) {
         this.num = num;
         this.type = String.valueOf(type);
         this.author = author;
+
     }
 
     @Override
@@ -30,4 +31,6 @@ public class AbsOperation implements Operation {
     public String author() {
         return author;
     }
+
+
 }

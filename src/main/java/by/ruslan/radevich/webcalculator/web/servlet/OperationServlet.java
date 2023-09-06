@@ -33,6 +33,8 @@ public class OperationServlet extends HttpServlet {
         Optional<Operation> operation = operationFactory.getOperation(split, Operation.Type.valueOf(type),author);
         Operation calculate = OperationService.getInstance().calculate(operation);
         double result = calculate.result();
+        req.setAttribute("result", result);
+        getServletContext().getRequestDispatcher("/pages/calculator.jsp").forward(req, resp);
     }
 
 }

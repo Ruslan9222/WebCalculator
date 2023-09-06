@@ -1,5 +1,6 @@
 package by.ruslan.radevich.webcalculator.web.servlet;
 
+import by.ruslan.radevich.webcalculator.domain.AbsOperation;
 import by.ruslan.radevich.webcalculator.entity.Operation;
 import by.ruslan.radevich.webcalculator.entity.User;
 import by.ruslan.radevich.webcalculator.factory.OperationFactory;
@@ -30,10 +31,10 @@ public class OperationServlet extends HttpServlet {
         String[] split = values.split(",");
         String type = req.getParameter("type");
         String author = req.getParameter("author");
-        Optional<Operation> operation = operationFactory.getOperation(split, Operation.Type.valueOf(type),author);
-        Operation calculate = OperationService.getInstance().calculate(operation);
+        Operation operation = operationFactory.getOperation(split, Operation.Type.valueOf(type),author);
+        Operation calculate = operationService.calculate(operation);
         double result = calculate.result();
-        req.setAttribute("result", result);
+        req.setAttribute("result",result);
         getServletContext().getRequestDispatcher("/pages/calculator.jsp").forward(req, resp);
     }
 

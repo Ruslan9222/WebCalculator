@@ -5,6 +5,8 @@ import by.ruslan.radevich.webcalculator.entity.Operation;
 
 import java.util.Optional;
 
+import static by.ruslan.radevich.webcalculator.entity.Operation.Type.*;
+
 public class OperationFactory {
     private static OperationFactory instance;
 
@@ -20,39 +22,31 @@ public class OperationFactory {
     }
 
 
-    public Optional<Operation> getOperation(String[] values, Operation.Type type, String author) {
+    public Operation getOperation(String[] values, Operation.Type type, String author) {
         switch (type) {
-            case SUM -> {
-                return Optional.of(new SumOperation(Double.parseDouble(values[0]), Double.parseDouble(values[1])));
-            }
-            case ABS -> {
-                return Optional.of(new AbsOperation(Double.parseDouble(values[0]), type, author));
-            }
-            case COS -> {
-                return Optional.of(new CosOperation(Double.parseDouble(values[0]), type, author));
-            }
-            case DIV -> {
-                return Optional.of(new DivOperation(Double.parseDouble(values[0]), Double.parseDouble(values[1]), author));
-            }
-            case FLOOR -> {
-                return Optional.of(new FloorOperation(Double.parseDouble(values[0]), type, author));
-            }
-            case LOG -> {
-                return Optional.of(new LogOperation(Double.parseDouble(values[0]), type, author));
-            }
-            case MUL -> {
-                return Optional.of(new MulOperation(Double.parseDouble(values[0]), Double.parseDouble(values[1]), author));
-            }
-            case SIN -> {
-                return Optional.of(new SinOperation(Double.parseDouble(values[0]), type, author));
-            }
-            case SUB -> {
-                return Optional.of(new SubOperation(Double.parseDouble(values[0]), Double.parseDouble(values[1])));
-            }
-            case TAN -> {
-                return Optional.of(new TanOperation(Double.parseDouble(values[0]), type, author));
-            }
+            case SUM -> new SumOperation(Double.parseDouble(values[0]), Double.parseDouble(values[1]));
+
+            case ABS -> new AbsOperation(Double.parseDouble(values[0]), type, author);
+
+            case COS -> new CosOperation(Double.parseDouble(values[0]), type, author);
+
+            case DIV -> new DivOperation(Double.parseDouble(values[0]), Double.parseDouble(values[1]), author);
+
+            case FLOOR -> new FloorOperation(Double.parseDouble(values[0]), type, author);
+
+            case LOG -> new LogOperation(Double.parseDouble(values[0]), type, author);
+
+            case MUL -> new MulOperation(Double.parseDouble(values[0]), Double.parseDouble(values[1]), author);
+
+            case SIN -> new SinOperation(Double.parseDouble(values[0]), type, author);
+
+            case SUB -> new SubOperation(Double.parseDouble(values[0]), Double.parseDouble(values[1]));
+
+            case TAN -> new TanOperation(Double.parseDouble(values[0]), type, author);
+            default -> throw new RuntimeException();
         }
-        return Optional.empty();
+
     }
+
 }
+

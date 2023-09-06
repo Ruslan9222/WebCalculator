@@ -5,7 +5,6 @@ import by.ruslan.radevich.webcalculator.entity.User;
 import by.ruslan.radevich.webcalculator.storage.InMemoryOperationStorage;
 import by.ruslan.radevich.webcalculator.storage.OperationStorage;
 
-import javax.servlet.ServletContext;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,11 +21,13 @@ public class OperationService {
         }
         return instance;
     }
+
     private final OperationStorage operationStorage = new InMemoryOperationStorage();
-    public Operation calculate (Optional<Operation> operation){
-        Operation execute = operation.get();
+
+    public Operation calculate(Operation operation) {
+        Operation execute = operation.execute();
         operationStorage.save(execute);
-        return operation.get();
+        return operation.execute();
 
 //    public Optional<Operation> calculate(double num1, double num2, String type, User author) {
 //        switch (type) {
@@ -72,9 +73,5 @@ public class OperationService {
 
     public List<Operation> getHistory(User author) {
         return operationStorage.findAllByAuthorUsername(author.getUsername());
-    }
-
-    public ServletContext getSession() {
-        return null;
     }
 }

@@ -31,6 +31,7 @@ public class OperationServlet extends HttpServlet {
         String[] split = values.split(",");
         String type = req.getParameter("type");
         String author = req.getParameter("author");
+
         Operation operation = operationFactory.getOperation(split, Operation.Type.valueOf(type),author);
         Operation calculate = operationService.calculate(operation);
         double result = calculate.result();

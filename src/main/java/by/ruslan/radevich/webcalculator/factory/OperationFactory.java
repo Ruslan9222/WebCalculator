@@ -23,7 +23,7 @@ public class OperationFactory {
 
 
     public Operation getOperation(String[] values, Operation.Type type, String author) {
-        switch (type) {
+        return switch (type) {
             case SUM -> new SumOperation(Double.parseDouble(values[0]), Double.parseDouble(values[1]));
 
             case ABS -> new AbsOperation(Double.parseDouble(values[0]), type, author);
@@ -44,8 +44,7 @@ public class OperationFactory {
 
             case TAN -> new TanOperation(Double.parseDouble(values[0]), type, author);
             default -> throw new RuntimeException();
-        }
-
+        };
     }
 
 }
